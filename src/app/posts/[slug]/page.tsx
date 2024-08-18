@@ -1,9 +1,9 @@
 import prisma from "../../../../util/db";
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const post = await prisma.post.findUnique({
     where: {
-      id: params.id,
+      slug: decodeURI(params.slug),
     },
   });
 
