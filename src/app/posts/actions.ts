@@ -11,6 +11,12 @@ export async function createPost(formData: FormData) {
         .replace(/\s+/g, "-")
         .toLocaleLowerCase(),
       content: formData.get("content") as string,
+      // 関連づけられたユーザのPOST
+      author: {
+        connect: {
+          email: "test@test.com",
+        },
+      },
     },
   });
 

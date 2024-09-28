@@ -10,12 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id             String @id @default(uuid())
+  email          String @unique
+  hashedPasswoed String
+  posts          Post[]
+}
+
 model Post {
   id        String   @id @default(uuid())
   title     String
   slug      String   @unique
   content   String
   published Boolean? @default(false)
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String?
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 }
