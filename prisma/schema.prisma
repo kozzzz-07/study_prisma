@@ -27,4 +27,6 @@ model Post {
   authorId  String?
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
+
+  @@index([slug])
 }
